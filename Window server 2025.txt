@@ -1,0 +1,43 @@
+Window server 2025
+1. cài đặt window server 2025
+2. cài đặt clients win 11 và win 10
+3. cấu hình ip tĩnh cho server và clients
+4. cấu hình icmp trên firewall (ping kiểm tra kết nối)
+5. chia sẻ dữ liệu giữa client và server ( share, security )
+  - tạo user cho win11 kết nối dữ liệu 
+  - chỉnh policy password 
+    + disable policy phức tạp password
+    + cập nhật điều điều chỉnh policy: gpupdate /force 
+6. cấu hình dns server
+7. cài đặt dhcp server 
+8. cấu hình domain controller
+9. join clients win10 và win11 và domain controller
+10. tạo OU, user, group trên domain controller
+   - chỉnh policy: cho phép user P-IT logon vào domain controller và cấm P-KeToan log on vào domain controller
+   - tạo và chỉnh group policy password và link vào OU-IT
+11. Cấu hình desktop wallpaper 
+   - tạo thư mục wallpaper trên domain controller và share everyone
+   - chỉnh policy desktop wallpaper rồi link cho user hoặc OU 
+   - chỉnh policy không cho user chỉnh wallpaper
+   - để kiểm tra xem user đang được áp policy gì -> gpresult /r 
+12. Software deploymemt bằng group policy (7zip.msi) 
+   - tạo OU mới và link policy 7zip 
+13. Disable Control Panel và settings pc: cấm user truy cập control panel và settings
+14. Map network drive bằng group policy: tự động ánh xạ 1 thư mục chia sẻ mạng thành ổ đĩa trên user
+15. Chia sẻ phân quyền NTFS: 
+   - chỉ IT mới vào được data IT 
+   - chỉ KeToan mới vào được data KeToan 
+   - Còn data chung thì cả 2 group đề truy cập được
+   - user không được phép xóa dữ lieu của user khác
+16. Disable USB, giới hạn số lần đăng nhập sai
+   - USB: Computer Configuration
+→ Policies
+→ Administrative Templates
+→ System
+→ Removable Storage Access
+   - Account Lockout Policy: Computer Configuration
+→ Policies
+→ Windows Settings
+→ Security Settings
+→ Account Policies
+→ Account Lockout Policy
